@@ -61,4 +61,14 @@ public interface MommyConfig extends Config
 	{
 		return "hers";
 	}
+	
+	@ConfigItem(
+		keyName = "extra_dommy",
+		name = "Extra Dommy",
+		description = "Mommy will be extra dominant to you~)"
+	)
+	default boolean extra_dommy()
+	{
+		return false;
+	}
 }

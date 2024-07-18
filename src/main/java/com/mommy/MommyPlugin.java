@@ -99,7 +99,11 @@ public class MommyPlugin extends Plugin
 	{
 		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
 		{
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Hello " + config.greeting() +"~", "Mommy");
+			if (!config.extra_dommy())
+				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Hello " + config.greeting() +"~", "Mommy");
+			else
+				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Hello " + config.greeting() +"~ Mommy's here for some fun~", "Mommy");
+
 		}	
 	}
 
@@ -109,8 +113,11 @@ public class MommyPlugin extends Plugin
         if (actorDeath.getActor() != client.getLocalPlayer())
             return;
 		
-		client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "It will be ok " + config.greeting() + ". Mommy promises~", "Mommy");
-		
+		if (!config.extra_dommy())
+			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "It will be ok " + config.greeting() + ". Mommy promises~", "Mommy");
+		else
+			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "How stupid of you " + config.greeting() + ". Best get better or you'll upset mommy.", "Mommy");
+	
     }
 
 
@@ -130,7 +137,10 @@ public class MommyPlugin extends Plugin
             return;
         }
 
-		client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Look at Mommy's big " + config.gender() + " getting all strong~", "Mommy");
+		if (!config.extra_dommy())
+			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Look at Mommy's big " + config.gender() + " getting all strong~", "Mommy");
+		else
+			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Gosh look at mommy's big " + config.gender() + " keep doing that and you might get a reward~", "Mommy");
 		
     }
 
@@ -142,7 +152,10 @@ public class MommyPlugin extends Plugin
             oldAchievementDiaries.put(diary, newValue);
             if (previousValue != -1 && previousValue != newValue && isAchievementDiaryCompleted(diary, newValue)) {
 				
-				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Mommy's so proud of you~ becoming a local hero.", "Mommy");
+				if (!config.extra_dommy())
+					client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Mommy's so proud of you~ becoming a local hero.", "Mommy");
+				else
+					client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Look at mommy's " + config.greeting() + " keep helping them and mommy might let you have fun~", "Mommy");
 		
             }
         }
@@ -161,7 +174,7 @@ public class MommyPlugin extends Plugin
 
 	@Provides
 	MommyConfig provideConfig(ConfigManager configManager)
-	{
+	{			
 		return configManager.getConfig(MommyConfig.class);
 	}			
 }
